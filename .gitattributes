@@ -1,2 +1,61 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
+class DeathStar
+{
+   private:
+      bool isShieldUp;
+      int stormTroopersOnBoard;
+
+   public:
+      DeathStar()
+      {
+         isShieldUp = true;
+         stormTroopersOnBoard = 10000;
+      }
+
+   int getStormTroopersOnBoard()
+   {
+      return stormTroopersOnBoard;
+   }
+   void toggleShields(int AccessCode)
+   {
+      if (AccessCode == 12345)
+         isShieldUp = !isShieldUp;
+   }
+   bool testShields(DeathStar & star)
+   {
+      if(star.isShieldUp)
+      {
+         cout << "Its a trap!!!" << endl;
+      }
+      else
+      {
+         cout << "Attack!!!" << endl;
+      }
+   }
+
+};
+
+int main()
+{
+   DeathStar firstOne;
+   for(int i = 0; i < 2000000; i++)
+   {
+      cout << "Trying code " << i << endl;
+      firstOne.toggleShields(i);
+
+      if(firstOne.testShields(firstOne))
+         cout << "Its a trap!!!" << endl;
+
+      else
+         break;
+   }
+   cout << "Number of Storm Troopers on board: "
+        << firstOne.getStormTroopersOnBoard() << endl;
+
+}
